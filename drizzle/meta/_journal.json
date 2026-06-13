@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1781097227384,
+      "tag": "0000_smooth_rhino",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1781097456415,
+      "tag": "0001_chilly_photon",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1781100865451,
+      "tag": "0002_strong_hellfire_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1781135054137,
+      "tag": "0003_outgoing_sunset_bain",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1781139166504,
+      "tag": "0004_spooky_micromacro",
+      "breakpoints": true
+    }
+  ]
+}
