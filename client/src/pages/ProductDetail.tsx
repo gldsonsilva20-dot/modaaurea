@@ -282,6 +282,17 @@ export default function ProductDetail() {
     cart.push({ ...product, size: selectedSize, color: selectedColor, quantity: 1 });
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdated"));
+
+    // ─── Meta Pixel - AddToCart ───────────────────────────────────────────
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq('track', 'AddToCart', {
+        content_name: product?.name,
+        content_type: 'product',
+        value: parseFloat(product?.price || "0"),
+        currency: 'BRL',
+      });
+    }
+
     setDrawerOpen(true);
   };
 
