@@ -14,6 +14,19 @@ export default function PaymentSuccess() {
         transactionId: params.transactionId,
         createdAt: new Date().toLocaleDateString("pt-BR"),
       });
+
+      // ─── Meta Pixel - Purchase ──────────────────────────────────────────
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const total = cart.reduce((sum: number, item: any) => sum + parseFloat(item.price) * item.quantity, 0);
+        (window as any).fbq('track', 'Purchase', {
+          value: total || 0,
+          currency: 'BRL',
+        });
+        // Limpa o carrinho após compra confirmada
+        localStorage.removeItem("cart");
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
     }
   }, [params]);
 
