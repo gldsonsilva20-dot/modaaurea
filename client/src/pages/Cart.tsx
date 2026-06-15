@@ -245,6 +245,16 @@ export default function Cart() {
     e.preventDefault();
     if (cartItems.length === 0) { toast.error("Seu carrinho está vazio!"); return; }
     setIsSubmitting(true);
+
+    // ─── Meta Pixel - InitiateCheckout ────────────────────────────────────
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout', {
+        value: totalPrice,
+        currency: 'BRL',
+        num_items: totalItems,
+      });
+    }
+
     try {
       const fullAddress = `${address}${complement ? ", " + complement : ""}, ${neighborhood}, ${city} - ${state}, CEP: ${zipCode}`;
 
@@ -275,7 +285,7 @@ export default function Cart() {
         totalPrice: totalPrice.toFixed(2),
         paymentMethod: "pix",
         items: JSON.stringify(cartItems),
-        utmParams: utmParams.toString(), // ← envia UTMs para o servidor
+        utmParams: utmParams.toString(),
       });
 
       if (checkoutUrl) window.location.href = checkoutUrl;
